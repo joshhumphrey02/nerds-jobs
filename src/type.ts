@@ -12,7 +12,7 @@ export interface IJob {
 	jobType?: string;
 	experienceLevel?: string;
 	tags?: string[];
-	createdAt?: Date;
+	createdAt: Date;
 }
 
 export interface IFilters {

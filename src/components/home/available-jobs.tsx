@@ -7,9 +7,11 @@ import { useEffect } from 'react';
 import useJobStore from '@/stores/useJobStore';
 import Tag from '../tag';
 import CompanyLogo from '../companyLogo';
+import { useRouter } from 'next/navigation';
 
 function AvailableJobs() {
-	const { jobs, lastFetched, fetchJobs } = useJobStore();
+	const router = useRouter();
+	const { jobs, lastFetched, fetchJobs, fetchJob } = useJobStore();
 
 	useEffect(() => {
 		if (shouldFetchJobs(lastFetched)) {
@@ -27,10 +29,15 @@ function AvailableJobs() {
 				</Badge>
 			</div>
 			<div className="space-y-2">
-				{jobs &&
-					jobs.splice(0, 10).map((job, i) => (
+				{jobs
+					.reverse()
+					.slice(0, 15)
+					.map((job, i) => (
 						<Card
 							key={job.title + i}
+							onClick={() => {
+								router.replace(`/?jobId=${i}`);
+							}}
 							className="flex gap-4 items-start px-6 py-4">
 							<CompanyLogo logo={job.companyLogo} />
 							<div className="space-y-2">

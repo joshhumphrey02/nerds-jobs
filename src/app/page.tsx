@@ -10,6 +10,7 @@ interface Props {
 	searchParams: {
 		signin?: string;
 		signup?: string;
+		jobId?: string;
 	};
 }
 
@@ -21,7 +22,7 @@ export default function Home({ searchParams }: Props) {
 				<FilterSection />
 				<div className="px-4 sm:px-12 grid sm:grid-cols-2 gap-6">
 					<AvailableJobs />
-					<SelectedJob />
+					<SelectedJob open={!!searchParams.jobId} />
 				</div>
 				<Footer />
 			</div>

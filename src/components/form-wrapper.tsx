@@ -8,8 +8,6 @@ import {
 	DrawerContent,
 	DrawerFooter,
 } from '@/components/ui/drawer';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { useRouter, useSearchParams } from 'next/navigation';
 

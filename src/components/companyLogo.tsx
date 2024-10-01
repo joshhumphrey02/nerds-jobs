@@ -1,20 +1,34 @@
 import Image, { StaticImageData } from 'next/image';
 import SpliceLogo from '@/assets/images/splice.png';
+import { cn } from '@/lib/utils';
+import { useMediaQuery } from '@/hooks/use-media-query';
+import { useMemo } from 'react';
+
+interface Props {
+	logo: StaticImageData | string;
+	className?: string;
+	width?: number;
+	height?: number;
+}
 
 const CompanyLogo = ({
 	logo = SpliceLogo,
-}: {
-	logo: StaticImageData | string;
-}) => {
+	className,
+	width,
+	height,
+	...props
+}: Props) => {
+	const isMobile = useMediaQuery('(max-width: 480px)');
 	return (
 		<Image
+			{...props}
 			src={logo}
 			alt="Splice Logo"
-			width={48}
-			height={48}
 			decoding="async"
 			style={{ color: 'transparent' }}
-			className="w-11 md:w-12 h-11 md:h-16 object-contain"
+			height={width ?? isMobile ? 48 : 52}
+			width={width ?? isMobile ? 48 : 52}
+			className={cn('object-contain', className)}
 		/>
 	);
 };
